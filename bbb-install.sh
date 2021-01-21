@@ -304,6 +304,7 @@ HERE
   fi
 
   aptitude update
+  aptitude upgrade
   aptitude dist-upgrade -yq
 
   need_pkg nodejs $MONGODB apt-transport-https haveged build-essential yq
@@ -510,6 +511,7 @@ need_pkg() {
 
   if [ ! "$SOURCES_FETCHED" = true ]; then
     aptitude update
+    aptitude upgrade
     SOURCES_FETCHED=true
   fi
 
@@ -796,6 +798,7 @@ install_docker() {
      stable"
 
     aptitude update
+    aptitude upgrade
     need_pkg docker-ce docker-ce-cli containerd.io
   fi
   if ! which docker; then err "Docker did not install"; fi
@@ -819,6 +822,7 @@ install_ssl() {
     add-apt-repository universe
     need_ppa certbot-ubuntu-certbot-xenial.list ppa:certbot/certbot 75BCA694
     aptitude update
+    aptitude upgrade
     need_pkg certbot
   fi
 
@@ -1071,6 +1075,7 @@ HERE
 
 install_certificate() {
   aptitude update
+  aptitude upgrade
   aptitude -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" install grub-pc update-notifier-common
   aptitude dist-upgrade -yq
 
@@ -1086,6 +1091,7 @@ install_certificate() {
 
 install_coturn() {
   aptitude update
+  aptitude upgrade
   aptitude dist-upgrade -yq
 
   need_pkg software-properties-common certbot
